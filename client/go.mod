@@ -1,3 +1,3 @@
-module github.com/TimofeiBoldenkov/dbs/client
+module dbs/client
 
 go 1.24.4

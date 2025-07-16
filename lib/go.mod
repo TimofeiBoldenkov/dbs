@@ -1,3 +1,3 @@
-module github.com/TimofeiBoldenkov/dbs/lib
+module dbs/lib
 
 go 1.24.4
