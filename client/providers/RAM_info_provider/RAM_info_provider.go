@@ -16,10 +16,11 @@ type RAMInfo struct {
 
 type RAMInfoProvider struct {}
 
-func (RAMInfoProvider) GetInfo() (RAMInfo, error) {
+// returns RamInfo
+func (RAMInfoProvider) GetInfo() (any, error) {
 	var ramInfo RAMInfo
-	filepath := "/proc/meminfo"
 
+	filepath := "/proc/meminfo"
 	ramInfoFile, err := os.Open(filepath)
 	if err != nil {
 		return RAMInfo{}, fmt.Errorf("can't open RAM info file: %v", err.Error())
@@ -34,7 +35,7 @@ func (RAMInfoProvider) GetInfo() (RAMInfo, error) {
 	}
 	ramInfo.TotalRAMInKB = totalRAM
 
-	scanner.Scan()
+	scanner.Scan() // skip second line
 
 	availableRAM, err := scanUintFromFirstLine(scanner)
 	if err != nil {

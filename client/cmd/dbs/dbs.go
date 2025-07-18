@@ -1,13 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"time"
 
-	raminfoprovider "dbs/client/internal/RAM_info_provider"
+	"dbs/client/providers/RAM_info_provider"
+	"dbs/lib/providers_manager"
 )
 
 func main() {
-	ramInfoProvider := raminfoprovider.RAMInfoProvider{}
-
-	fmt.Println(ramInfoProvider.GetInfo())
+	manager := providersmanager.ProvidersManager{}
+	manager.Add(raminfoprovider.RAMInfoProvider{}, time.Second * 3)
+	manager.Add(raminfoprovider.RAMInfoProvider{}, time.Second * 3)
+	manager.Run()
 }
