@@ -1,7 +1,7 @@
 package providersmanager
 
 import (
-	"dbs/lib/info_provider"
+	"github.com/TimofeiBoldenkov/dbs/lib/info_provider"
 	"fmt"
 	"math/rand"
 	"sync"

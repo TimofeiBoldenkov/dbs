@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"dbs/client/providers/RAM_info_provider"
-	"dbs/lib/providers_manager"
+	"github.com/TimofeiBoldenkov/dbs/client/providers/RAM_info_provider"
+	"github.com/TimofeiBoldenkov/dbs/lib/providers_manager"
 )
 
 func main() {

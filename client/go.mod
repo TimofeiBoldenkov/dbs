@@ -1,6 +1,5 @@
-module dbs/client
+module github.com/TimofeiBoldenkov/dbs/client
 
 go 1.24.4
 
-require dbs/lib v0.0.0
-replace dbs/lib => ../lib  // Локальный путь
+require github.com/TimofeiBoldenkov/dbs/lib v0.0.0-20250719064644-1740cf97d28f
