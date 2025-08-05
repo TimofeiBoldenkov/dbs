@@ -33,3 +33,5 @@ go.work.sum
 
 dbs
 !/client/cmd/dbs
+main
+.vscode
