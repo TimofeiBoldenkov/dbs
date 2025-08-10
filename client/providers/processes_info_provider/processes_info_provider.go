@@ -6,10 +6,11 @@ import (
 	"strconv"
 )
 
+// Collects information (PID and path to executable) of the processes currently launched in the user's system
 type ProcessesInfoProvider struct {}
 
 type ProcessInfo struct {
-	PID	uint16	`json:"pid"`
+	PID		uint16	`json:"pid"`
 	ExePath	string	`json:"exe"`
 }
 
@@ -27,16 +28,16 @@ func (ProcessesInfoProvider) GetInfo() (any, error) {
 		return nil, fmt.Errorf("can't read %v", PROCESSES_DIR)
 	}
 
-	for _, dirEntry := range processes {
-		if !dirEntry.IsDir() {
+	for _, process := range processes {
+		if !process.IsDir() {
 			continue
 		}
-		pid, err := strconv.Atoi(dirEntry.Name())
+		pid, err := strconv.Atoi(process.Name())
 		if err != nil || !(pid >= 1 && pid <= 32767) {
 			continue
 		}
 
-		exePath, err := os.Readlink(PROCESSES_DIR + "/" + dirEntry.Name() + "/exe")
+		exePath, err := os.Readlink(PROCESSES_DIR + "/" + process.Name() + "/exe")
 		if err != nil {
 			continue
 		}

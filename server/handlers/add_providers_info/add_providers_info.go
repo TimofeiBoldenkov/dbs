@@ -27,7 +27,7 @@ func AddProvidersInfo(ctx *fiber.Ctx) error {
 
 	conn, err := pgx.Connect(context.Background(), dbsDatabaseUrl)
 	if err != nil {
-		return fmt.Errorf("can't connect to dbs database (%v): %v", dbsDatabaseUrl, err)
+		return fmt.Errorf("can't connect to %v: %v", dbsDatabaseUrl, err)
 	}
 	defer conn.Close(context.Background())
 

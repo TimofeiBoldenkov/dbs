@@ -9,6 +9,7 @@ import (
 	"strconv"
 )
 
+// Collects information about the RAM a user has and currently utilizes.
 type RAMInfo struct {
 	TotalRAMInKB	uint64	`json:"total_ram_kb"`
 	UsedRAMInKB		uint64 	`json:"used_ram_kb"` // UsedRAMInKB = MemTotal - MemAvailable
@@ -16,14 +17,13 @@ type RAMInfo struct {
 
 type RAMInfoProvider struct {}
 
-// returns RamInfo
 func (RAMInfoProvider) GetInfo() (any, error) {
 	var ramInfo RAMInfo
 
 	filepath := "/proc/meminfo"
 	ramInfoFile, err := os.Open(filepath)
 	if err != nil {
-		return RAMInfo{}, fmt.Errorf("can't open RAM info file: %v", err.Error())
+		return RAMInfo{}, err
 	}
 	defer ramInfoFile.Close()
 
@@ -57,7 +57,7 @@ func scanUintFromFirstLine(scanner *bufio.Scanner) (uint64, error) {
 		if err := scanner.Err(); err != nil {
 			return 0, fmt.Errorf("can't scan: %v", err.Error())
 		} else {
-			return 0, errors.New("cant scan: EOF")
+			return 0, errors.New("can't scan: EOF")
 		}
 	}
 }
